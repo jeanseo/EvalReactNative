@@ -1,6 +1,6 @@
 export const SET_PLAYER_CHOICE = "SET_PLAYER_CHOICE";
-export const B = "B";
-export const C = "C";
-export const D = "D";
-export const E = "E";
+export const SUBMIT_CHOICE = "SUBMIT_CHOICE";
+export const RESET_ERROR = "RESET_ERROR";
+export const INITIALIZE_GAME = "INITIALIZE_GAME";
+export const SUBMIT_COMPUTER_CHOICE = "SUBMIT_COMPUTER_CHOICE";
 export const F = "F";

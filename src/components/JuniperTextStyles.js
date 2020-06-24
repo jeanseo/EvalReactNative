@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        alignItems: 'stretch'
     },
     
     title1: {
@@ -52,6 +53,15 @@ const styles = StyleSheet.create({
     choicesColumn : {
         flex: 1,
         alignSelf:'stretch',
+    },
+    alertBox:{
+        alignSelf: 'stretch',
+        alignContent: 'stretch',
+        position: 'absolute',
+        backgroundColor:'red',
+        height: 50
+
+
     }
 });
 

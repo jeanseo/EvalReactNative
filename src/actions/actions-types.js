@@ -1,41 +1,33 @@
-import {SET_PLAYER_CHOICE, B, C, D, E, F} from "../constants/action";
+import {SET_PLAYER_CHOICE, SUBMIT_CHOICE, INITIALIZE_GAME, E, F, RESET_ERROR, SUBMIT_COMPUTER_CHOICE} from "../constants/action";
+import {computerStrategy} from "../utils/utils";
 
 export const setPlayerChoice = (payload) =>{
     return{
         type: SET_PLAYER_CHOICE, payload
     }
-
 };
-export const B = () =>{
+export const submitChoice = () =>{
     return{
-        type: B
+        type: SUBMIT_CHOICE
     }
 };
 
-export const C = () =>{
+export const resetError = () =>{
     return{
-        type: C
+        type: RESET_ERROR
     }
 };
 
-export const D = () =>{
+export const initializeGame = () =>{
     return{
-        type: D
+        type: INITIALIZE_GAME
     }
 };
 
-export const async1 = () => {
 
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(toggleHistoryDisplay());
-        }, 2000);
-    };
-};
-
-export const E = (payload) =>{
+export const submitComputerChoice = () =>{
     return{
-        type: E, payload
+        type: SUBMIT_COMPUTER_CHOICE
     }
 };
 /*
@@ -59,10 +51,21 @@ export const async2 = () => {
                 dispatch(setError('Erreur dans le chargement des données'));
             });
     }
+};*/
+
+export const hideMessage = (payload) =>{
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(resetError());
+        }, 2000);
+    };
 };
 
-export const setError = (payload) =>{
-    return{
-        type: SET_ERROR, payload
-    }
-};*/
+export const computerPlays = () =>{
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(submitComputerChoice());
+        }, 2000);
+    };
+};
+

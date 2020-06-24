@@ -10,7 +10,7 @@ export default (state = stateInit, action = {}) => {
 
     switch (action.type)
     {
-        case A:
+        case null:
             return {...state};
         default:
             return state;
