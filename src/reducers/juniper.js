@@ -29,9 +29,6 @@ const stateInit = _.cloneDeep(initialState);
 
 export default (state = stateInit, action = {}) => {
 
-
-    let errorMessage;
-    let displayErrorMessage;
     let computerChoice;
     let computerChoices;
     let playerChoices;
@@ -65,7 +62,7 @@ export default (state = stateInit, action = {}) => {
             if(!(state.playerChoice>0 && state.playerChoice <=state.maxValue))
             {
                 return {...state,
-                    errorMessage: `La valeur doit être comprise entre 0 et ${state.maxValue}`,
+                    errorMessage: `Le nombre doit être comprise entre 1 et ${state.maxValue}`,
                     displayError: true
                 };
             }

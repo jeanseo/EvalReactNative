@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from "react-native";
+import {Text, TouchableOpacity} from "react-native";
 import JuniperText from "../components/JuniperText";
 import styles from "../components/JuniperTextStyles";
+import Colors from "../../Colors";
 
 const HomeScreen = ({ navigation }) =>{
 
     return(
     <JuniperText>
         <Text style={styles.title2}>
-                Bienvenue Voici le jeu
+                Bienvenue, voici le jeu
             </Text>
             <Text style={styles.title1}>
                 Juniper Green
@@ -20,10 +21,10 @@ const HomeScreen = ({ navigation }) =>{
                 <Text>Règles du jeu</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.button}
+                style={[styles.button, {backgroundColor: Colors.primary}]}
                 onPress={() => navigation.navigate('Game')}
             >
-                <Text>Commencer le jeu</Text>
+                <Text style={{color: Colors.white}}>Commencer le jeu</Text>
             </TouchableOpacity>
         </JuniperText>
     )

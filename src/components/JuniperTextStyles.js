@@ -1,10 +1,11 @@
 import {StyleSheet} from "react-native";
+import Colors from "../../Colors";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        backgroundColor: '#fff',
+        backgroundColor: Colors.light,
         alignItems: 'stretch'
     },
     
@@ -27,9 +28,10 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        backgroundColor: "#DDDDDD",
+        backgroundColor: Colors.secondary,
         padding: 10,
-        margin: 10
+        margin: 10,
+        borderRadius: 4,
     },
     topMenu: {
         flexDirection:"row",
@@ -53,14 +55,24 @@ const styles = StyleSheet.create({
     choicesColumn : {
         flex: 1,
         alignSelf:'stretch',
+        padding: 2
     },
     alertBox:{
-        alignSelf: 'stretch',
-        alignContent: 'stretch',
+        flex :1,
+        width: '100%',
         position: 'absolute',
-        backgroundColor:'red',
-        height: 50
+        backgroundColor: Colors.danger,
+        height: 70,
+        justifyContent: 'center',
+
     },
+    alertBoxText:{
+        flex: 1,
+        color:Colors.white,
+        fontWeight: 'bold',
+        alignContent: 'center',
+
+    }
 });
 
 export default styles

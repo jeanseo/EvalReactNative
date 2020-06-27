@@ -1,14 +1,13 @@
 import React, {useEffect} from 'react';
 import styles from "./JuniperTextStyles";
-import {useDispatch, useStore, useSelector, } from "react-redux";
-import {Text, TextInput, TouchableOpacity, View, FlatList, ActivityIndicator} from "react-native";
-import {setPlayerChoice, submitChoice, hideMessage, initializeGame, computerPlays, endGame} from "../actions/actions-types";
+import {useDispatch, useSelector, } from "react-redux";
+import {Text, TextInput, TouchableOpacity, View, ActivityIndicator} from "react-native";
+import {setPlayerChoice, submitChoice, hideMessage, initializeGame, computerPlays} from "../actions/actions-types";
 import Colors from "../../Colors";
-import Choices from "./Choices";
 
 const Game = () => {
     const dispatch = useDispatch();
-    const {computerTurn,playerChoice,playerChoices,computerChoice,computerChoices,displayError,errorMessage, gameOver} = useSelector(state => state.juniper);
+    const {computerTurn,playerChoice,playerChoices,computerChoice,computerChoices,displayError, gameOver} = useSelector(state => state.juniper);
     //Démarrage du jeu
     useEffect(()=>{dispatch(initializeGame())},[]);
 
@@ -20,7 +19,7 @@ const Game = () => {
 
     //Lancement du tour de jeu du computer
     useEffect(()=>{
-        if(computerTurn)
+        if(computerTurn && !gameOver)
             dispatch(computerPlays());
     },[computerTurn]);
 
@@ -28,11 +27,7 @@ const Game = () => {
 
     return(
         <View>
-            {displayError &&
-            <View style={styles.alertBox}>
-                <Text style={{color:'white',fontWeight: 'bold',}}>{errorMessage}</Text>
-            </View>}
-            {gameOver && <Text style={styles.title2}>"Pas de choix possible"</Text>}
+            {gameOver && <Text style={styles.title2}>Plus de choix possible</Text>}
             {!gameOver && computerTurn && <View style={{flexDirection:'row', justifyContent:'space-evenly'}}><Text style={styles.title2}>Computer réfléchit...</Text><ActivityIndicator color={Colors.primary} /></View>}
             {!gameOver && !computerTurn && <Text style={styles.title2}>C'est à vous !</Text>}
 
@@ -51,11 +46,11 @@ const Game = () => {
                 />
             </View>
             <TouchableOpacity
-                style={styles.button}
+                style={[styles.button, {backgroundColor: Colors.primary}]}
                 disabled = {computerTurn}
                 onPress={() => dispatch(submitChoice())}
             >
-                <Text>Valider</Text>
+                <Text style={{color: Colors.white}}>Valider</Text>
             </TouchableOpacity>
 
         </View>

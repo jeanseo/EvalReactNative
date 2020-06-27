@@ -1,19 +1,3 @@
-const testPrime = (number) => {
-  if (number===1)
-    return false;
-  else if(number === 2)
-    return true;
-    else
-  {
-      for(let x = 2; x < number; x++)
-      {
-          if(number % x === 0)
-              return false;
-      }
-      return true;
-  }
-};
-
 const calculatePossibleValues = (playedValues, currentValue, maxValue) =>{
 
     //On calcule les multiples et les divisibles de currentValue, et on les mets dans un tableau
@@ -57,19 +41,11 @@ const computerStrategy = (possibleValues, maxValue, playedValues) => {
         return winningValue.value;
     }
 
-
-
-    //On cherche en priorité les nombres premiers > 3
-    //const primeNumbers = possibleValues.filter(value => (value >3 && testPrime(value)));
-
-
-
     //On retourne la valeur avec le moins de possibilités
-    console.log('valeur retournée', values[0].value)
     return values[0].value;
 
 };
 
 
-export {testPrime, calculatePossibleValues, computerStrategy}
+export {calculatePossibleValues, computerStrategy}
 

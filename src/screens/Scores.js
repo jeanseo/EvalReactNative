@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput} from "react-native";
+import {View, Text, TouchableOpacity} from "react-native";
 import { useSelector} from "react-redux";
 
 import JuniperText from "../components/JuniperText";
 import styles from "../components/JuniperTextStyles";
 import Choices from "../components/Choices";
+import Colors from "../../Colors";
 
 const ScoreScreen = ({ navigation }) => {
     const {scores} = useSelector(state => state.score);
@@ -21,14 +22,14 @@ const ScoreScreen = ({ navigation }) => {
                     <Text>Home</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.button}
+                    style={[styles.button, {backgroundColor: Colors.primary}]}
                     onPress={() => navigation.navigate('Game')}
                 >
-                    <Text>Rejouer</Text>
+                    <Text style={{color: Colors.white}}>Rejouer</Text>
                 </TouchableOpacity>
             </View>
-            <Text>Game Juniper Green</Text>
-            <Text>Le jeu est terminé, vous avez {score.won?'gagné' : 'perdu'} en {score.playerChoices.length + score.computerChoices.length} tours
+            <Text style={styles.title1}>Game Juniper Green</Text>
+            <Text style={styles.title2}>Le jeu est terminé, vous avez {score.won?'gagné' : 'perdu'} en {score.playerChoices.length + score.computerChoices.length} tours
             </Text>
             <Choices computerChoices={score.computerChoices} playerChoices={score.playerChoices}/>
 

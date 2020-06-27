@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from "react-native";
+import {View, Text, TouchableOpacity} from "react-native";
 import JuniperText from "../components/JuniperText";
 import styles from "../components/JuniperTextStyles";
 import Game from "../components/Game";
 import {endGame, initializeGame} from "../actions/actions-types";
 import {useDispatch, useSelector} from "react-redux";
 import Choices from "../components/Choices";
+import Colors from "../../Colors";
 
 const GameScreen = ({ navigation }) =>{
     const dispatch = useDispatch();
@@ -46,10 +47,10 @@ const GameScreen = ({ navigation }) =>{
                     <Text>Règles du jeu</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.button}
-                    //onPress={() => navigation.navigate('Home')}
+                    style={[styles.button, {backgroundColor: Colors.danger}]}
+                    onPress={() => dispatch(initializeGame())}
                 >
-                    <Text>Reset</Text>
+                    <Text style={{color: Colors.white}}>Reset</Text>
                 </TouchableOpacity>
             </View>
             <Game/>
