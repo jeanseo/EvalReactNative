@@ -3,4 +3,4 @@ export const SUBMIT_CHOICE = "SUBMIT_CHOICE";
 export const RESET_ERROR = "RESET_ERROR";
 export const INITIALIZE_GAME = "INITIALIZE_GAME";
 export const SUBMIT_COMPUTER_CHOICE = "SUBMIT_COMPUTER_CHOICE";
-export const F = "F";
+export const END_GAME = "END_GAME";

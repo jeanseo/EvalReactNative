@@ -10,6 +10,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import HomeScreen from "./src/screens/Home";
 import RulesScreen from "./src/screens/Rules";
 import GameScreen from "./src/screens/Game";
+import ScoreScreen from "./src/screens/Scores";
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -23,6 +24,7 @@ const Nav = () => {
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="Rules" component={RulesScreen} />
                 <Stack.Screen name="Game" component={GameScreen} />
+                <Stack.Screen name="Score" component={ScoreScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

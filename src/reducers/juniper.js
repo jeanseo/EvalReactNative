@@ -10,7 +10,7 @@ import _ from 'lodash';
 import {calculatePossibleValues, computerStrategy} from "../utils/utils";
 
 const initialState = {
-    maxValue : 50,
+    maxValue : 10,
     playerChoice: '',
     computerChoice : '',
     computerChoices : [],
@@ -20,7 +20,8 @@ const initialState = {
     errorMessage : '',
     computerTurn : false,
     gameOver: false,
-    winner: ''
+    winner: '',
+    startGameDate : null,
 
 };
 
@@ -46,10 +47,7 @@ export default (state = stateInit, action = {}) => {
             return{...state, errorMessage: '',displayError: false};
         case INITIALIZE_GAME:
             const initialValue = Math.floor(Math.random() * state.maxValue)+1;
-            playedValues = [initialValue];
-            possibleValues = calculatePossibleValues(playedValues,initialValue, state.maxValue);
-            console.log(possibleValues);
-
+            possibleValues = calculatePossibleValues([initialValue],initialValue, state.maxValue);
 
             return {...state,
                 computerTurn: false,
@@ -57,13 +55,17 @@ export default (state = stateInit, action = {}) => {
                 playerChoices : [],
                 computerChoice: initialValue,
                 possibleValues: possibleValues,
+                startGameDate: Date.now(),
+                playerChoice: '',
+                gameOver: false,
+                winner: '',
             };
         case SUBMIT_CHOICE:
             //Vérifier valeur nombre entier >0 && <=100
-            if(!(state.playerChoice>0 && state.playerChoice <=100))
+            if(!(state.playerChoice>0 && state.playerChoice <=state.maxValue))
             {
                 return {...state,
-                    errorMessage: 'La valeur doit être comprise entre 0 et 100',
+                    errorMessage: `La valeur doit être comprise entre 0 et ${state.maxValue}`,
                     displayError: true
                 };
             }
@@ -80,7 +82,7 @@ export default (state = stateInit, action = {}) => {
             //TODO vérifier valeur correcte (incluse dans possibleValues
             if(!state.possibleValues.includes(parseInt(state.playerChoice))){
                 return {...state,
-                    errorMessage: 'Valeur incorrecte',
+                    errorMessage: `Le nombre doit être un multiple ou un divisible de ${state.computerChoice}`,
                     displayError: true
                 };
             }
@@ -88,14 +90,17 @@ export default (state = stateInit, action = {}) => {
             playerChoices = [...state.playerChoices, parseInt(state.playerChoice)];
             playedValues = playerChoices.concat(state.computerChoices);
             possibleValues = calculatePossibleValues(playedValues,state.playerChoice, state.maxValue);
+            //Si plus de valeurs possibles, le jeu est terminé
             gameOver = possibleValues.length === 0;
             //Si plus de valeurs possibles, partie gagnée
             possibleValues.length === 0 ? gameOver = true : gameOver = false;
 
-            return {...state, playerChoices: playerChoices, computerTurn: true, playerChoice: '', gameOver: gameOver,
+            return {...state, playerChoices: playerChoices, computerTurn: true, gameOver: gameOver,
                         possibleValues: possibleValues};
 
         case SUBMIT_COMPUTER_CHOICE:
+            if (state.gameOver)
+                return state;
             computerChoice = computerStrategy(state.possibleValues, state.maxValue, state.playerChoices.concat(state.computerChoice));
             computerChoices = state.computerChoices.concat(computerChoice);
             playedValues = computerChoices.concat(state.playerChoices);
@@ -104,8 +109,8 @@ export default (state = stateInit, action = {}) => {
 
 
             //Si plus de valeurs possibles, partie gagnée
-            possibleValues.length === 0 ? gameOver = true : gameOver = false;
-            return {...state, computerChoice:computerChoice, computerChoices: computerChoices,
+            gameOver = possibleValues.length === 0;
+            return {...state, computerChoice:computerChoice, computerChoices: computerChoices, playerChoice: '',
                 possibleValues: possibleValues, computerTurn: false, gameOver: gameOver};
 
         default:

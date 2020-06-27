@@ -1,8 +1,10 @@
-import {A} from "../constants/action";
+import {END_GAME} from "../constants/action";
 
 import _ from 'lodash';
 
-const initialState = {};
+const initialState = {
+    scores : []
+};
 
 const stateInit = _.cloneDeep(initialState);
 
@@ -10,8 +12,10 @@ export default (state = stateInit, action = {}) => {
 
     switch (action.type)
     {
-        case null:
-            return {...state};
+        case END_GAME:
+            console.log('fin du jeu');
+            const scores = state.scores.concat(action.payload);
+            return {...state, scores: scores};
         default:
             return state;
     }

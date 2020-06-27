@@ -1,5 +1,11 @@
-import {SET_PLAYER_CHOICE, SUBMIT_CHOICE, INITIALIZE_GAME, E, F, RESET_ERROR, SUBMIT_COMPUTER_CHOICE} from "../constants/action";
-import {computerStrategy} from "../utils/utils";
+import {
+    SET_PLAYER_CHOICE,
+    SUBMIT_CHOICE,
+    INITIALIZE_GAME,
+    RESET_ERROR,
+    SUBMIT_COMPUTER_CHOICE,
+    END_GAME
+} from "../constants/action";
 
 export const setPlayerChoice = (payload) =>{
     return{
@@ -30,30 +36,15 @@ export const submitComputerChoice = () =>{
         type: SUBMIT_COMPUTER_CHOICE
     }
 };
-/*
-export const async2 = () => {
-    console.log('etape 0');
-    return dispatch => {
-        fetch("https://reactnative.dev/movies.json", {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-            }
-        } )
-            .then(res => res.json())
-            .then(
-                result => {
-                    dispatch(getMovies(result));
-                }
-            )
-            .catch((err) => {
-                console.log(err);
-                dispatch(setError('Erreur dans le chargement des données'));
-            });
-    }
-};*/
 
-export const hideMessage = (payload) =>{
+export const endGame = (payload) => {
+    console.log(payload);
+    return{
+        type: END_GAME, payload
+    }
+};
+
+export const hideMessage = () =>{
     return dispatch => {
         setTimeout(() => {
             dispatch(resetError());
@@ -62,10 +53,12 @@ export const hideMessage = (payload) =>{
 };
 
 export const computerPlays = () =>{
+    //on indique une durée aléatoire de réflexion etre 2 et 5s
+    const thinkingTime = Math.floor(Math.random() * (5000 - 2000) ) + 2000;
     return dispatch => {
         setTimeout(() => {
             dispatch(submitComputerChoice());
-        }, 2000);
+        }, thinkingTime);
     };
 };
 

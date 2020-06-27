@@ -60,9 +60,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         backgroundColor:'red',
         height: 50
-
-
-    }
+    },
 });
 
 export default styles

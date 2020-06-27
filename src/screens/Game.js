@@ -1,10 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from "react-native";
 import JuniperText from "../components/JuniperText";
 import styles from "../components/JuniperTextStyles";
 import Game from "../components/Game";
+import {endGame, initializeGame} from "../actions/actions-types";
+import {useDispatch, useSelector} from "react-redux";
+import Choices from "../components/Choices";
 
 const GameScreen = ({ navigation }) =>{
+    const dispatch = useDispatch();
+    const {gameOver, computerTurn,computerChoices,playerChoices, startGameDate} = useSelector(state => state.juniper);
+
+
+    //Redirection vers la page score en fin de partie
+    useEffect(()=>{
+        if(gameOver){
+            dispatch(endGame({
+                won: computerTurn,
+                computerChoices: computerChoices,
+                playerChoices: playerChoices,
+                startGameDate : startGameDate,
+                endGameDate : Date.now()
+            }));
+            setTimeout(function () {
+                dispatch(initializeGame());
+                navigation.push('Score')
+            }, 3000);
+
+        }
+    },[gameOver]);
 
     return(
         <JuniperText>
@@ -29,6 +53,8 @@ const GameScreen = ({ navigation }) =>{
                 </TouchableOpacity>
             </View>
             <Game/>
+            <Choices playerChoices={playerChoices} computerChoices={computerChoices}/>
+
 
 
         </JuniperText>
