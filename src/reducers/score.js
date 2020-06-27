@@ -13,7 +13,6 @@ export default (state = stateInit, action = {}) => {
     switch (action.type)
     {
         case END_GAME:
-            console.log('fin du jeu');
             const scores = state.scores.concat(action.payload);
             return {...state, scores: scores};
         default:

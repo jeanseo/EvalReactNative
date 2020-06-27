@@ -38,7 +38,7 @@ const Game = () => {
             <View style={[{flexDirection:"row"},{alignItems: "center"},{justifyContent: 'center',}]}>
                 <Text>Votre choix:</Text>
                 <TextInput
-                    keyboardType = 'number-pad'
+                    keyboardType = 'name-phone-pad'
                     value={computerTurn?'':playerChoice.toString()}
                     onChangeText={value => dispatch(setPlayerChoice(value))}
                     disabled = {computerTurn}

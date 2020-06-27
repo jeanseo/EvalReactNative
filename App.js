@@ -9,8 +9,8 @@ import HomeScreen from "./src/screens/Home";
 import RulesScreen from "./src/screens/Rules";
 import GameScreen from "./src/screens/Game";
 import ScoreScreen from "./src/screens/Scores";
-import AlertMessage from "./src/components/AlertMessage";
 import Colors from "./Colors";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -41,10 +41,13 @@ const Nav = () => {
 
 export default function App() {
   return (
+      <SafeAreaProvider>
       <Provider store={store}>
+
           <Nav/>
-          <AlertMessage/>
+
       </Provider>
+      </SafeAreaProvider>
   );
 }
 

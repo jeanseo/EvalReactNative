@@ -26,26 +26,13 @@ const calculatePossibleValues = (playedValues, currentValue, maxValue) =>{
 
 
 const computerStrategy = (possibleValues, maxValue, playedValues) => {
-    // On crée un nouveau tableau
+    // On crée un nouveau tableau contenant pour chaque nombre qu'il est possible de jouer, le nombre de possibilités au tour d'après
     let values = possibleValues.map(v => ({value: v, possibilities : calculatePossibleValues(playedValues.concat(v),v,maxValue)}));
         values.sort((a,b)=> a.possibilities.length - b.possibilities.length);
 
-    values.map(v=> console.log(v.possibilities.length));
-
-    console.log('valeurs possibles',values);
-    //S'il y en a un qui n'a pas de possibilités, on le renvoie:
-    const winningValue = values.find(v => v.possibilities === 0);
-    if (winningValue)
-    {
-        console.log('Winning Value',winningValue);
-        return winningValue.value;
-    }
-
     //On retourne la valeur avec le moins de possibilités
     return values[0].value;
-
 };
-
 
 export {calculatePossibleValues, computerStrategy}
 

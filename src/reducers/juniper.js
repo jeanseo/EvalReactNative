@@ -10,7 +10,7 @@ import _ from 'lodash';
 import {calculatePossibleValues, computerStrategy} from "../utils/utils";
 
 const initialState = {
-    maxValue : 10,
+    maxValue : 100,
     playerChoice: '',
     computerChoice : '',
     computerChoices : [],
@@ -62,7 +62,7 @@ export default (state = stateInit, action = {}) => {
             if(!(state.playerChoice>0 && state.playerChoice <=state.maxValue))
             {
                 return {...state,
-                    errorMessage: `Le nombre doit être comprise entre 1 et ${state.maxValue}`,
+                    errorMessage: `Le nombre doit être compris entre 1 et ${state.maxValue}`,
                     displayError: true
                 };
             }
@@ -102,8 +102,6 @@ export default (state = stateInit, action = {}) => {
             computerChoices = state.computerChoices.concat(computerChoice);
             playedValues = computerChoices.concat(state.playerChoices);
             possibleValues = calculatePossibleValues(playedValues,computerChoice, state.maxValue);
-            console.log(possibleValues);
-
 
             //Si plus de valeurs possibles, partie gagnée
             gameOver = possibleValues.length === 0;

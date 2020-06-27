@@ -38,7 +38,6 @@ export const submitComputerChoice = () =>{
 };
 
 export const endGame = (payload) => {
-    console.log(payload);
     return{
         type: END_GAME, payload
     }

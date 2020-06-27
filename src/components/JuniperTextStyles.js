@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     },
     alertBox:{
         flex :1,
+        flexDirection:'column',
         width: '100%',
         position: 'absolute',
         backgroundColor: Colors.danger,
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
         color:Colors.white,
         fontWeight: 'bold',
         alignContent: 'center',
+        justifyContent: 'center',
 
     }
 });

@@ -31,10 +31,8 @@ const ScoreScreen = ({ navigation }) => {
             <Text style={styles.title1}>Game Juniper Green</Text>
             <Text style={styles.title2}>Le jeu est terminé, vous avez {score.won?'gagné' : 'perdu'} en {score.playerChoices.length + score.computerChoices.length} tours
             </Text>
+            <Text style={styles.title2}>{scores.filter(s=>s.won === true).length} partie{scores.filter(s=>s.won === true).length > 1 && 's'} gagnée{scores.filter(s=>s.won === true).length > 1 && 's'} / {scores.length}</Text>
             <Choices computerChoices={score.computerChoices} playerChoices={score.playerChoices}/>
-
-
-
         </JuniperText>
     )
 
